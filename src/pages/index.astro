@@ -3,25 +3,25 @@ import '../styles/global.css';
 const ZAP = (t) => `https://wa.me/551136525424?text=${encodeURIComponent(t)}`;
 const cards = [
   { n:'01', t:'Quero trocar de contador',
-    d:'Você já tem empresa e já tem contador, mas fala com um robô, descobre imposto pago a mais depois do fato e não tem a quem perguntar. A migração é nossa: pedimos a documentação ao seu contador atual.',
+    d:'Você já tem empresa e procura um acompanhamento mais próximo, com um contador responsável que explique cada decisão tributária antes dela acontecer. A migração é conduzida por nós: solicitamos a documentação e cuidamos da transferência.',
     cta:'Planejar minha troca', msg:'Olá! Tenho empresa e quero trocar de contador. Podem me explicar como funciona a migração?' },
   { n:'02', t:'Preciso de um contador para minha empresa',
-    d:'Escritório contábil com contador para empresa de comércio, serviços ou pequena indústria. Escrita fiscal, contabilidade e folha no mesmo lugar, com consultoria tributária inclusa e um contador que atende pelo nome.',
+    d:'Escritório contábil com contador para empresa de comércio, serviços ou pequena indústria. Escrita fiscal, contabilidade e folha no mesmo lugar, com consultoria tributária inclusa e um contador responsável pela sua conta.',
     cta:'Falar sobre minha empresa', msg:'Olá! Preciso de um contador para a minha empresa. Podem me passar mais informações?' },
   { n:'03', t:'Vou abrir e quero acompanhamento',
     d:'Abrir empresa é a parte fácil. O que decide o custo do primeiro ano é o CNAE certo e o enquadramento certo, e é isso que organizamos na abertura de empresa, antes de você assinar qualquer coisa.',
     cta:'Planejar minha abertura', msg:'Olá! Vou abrir uma empresa e quero acompanhamento contábil. Podem me ajudar?' },
 ];
 const riscos = [
-  { n:'01', t:'Você sabe se o seu CNAE reflete exatamente o que a empresa vende, ou está pagando imposto a mais desde a abertura?' },
-  { n:'02', t:'Seu contador avisa antes do vencimento, ou você descobre o problema quando a multa chega?' },
-  { n:'03', t:'Quanto uma revisão tributária feita tarde representa em imposto, juros e multa retroativa?' },
+  { n:'01', t:'Você sabe se o CNAE registrado reflete exatamente o que a sua empresa vende hoje?' },
+  { n:'02', t:'Você recebe aviso antes de cada vencimento, ou costuma tomar conhecimento da obrigação depois do prazo?' },
+  { n:'03', t:'Você sabe o que uma revisão tributária feita fora de prazo representa em imposto, juros e multa?' },
 ];
 const passos = [
   { n:'1º Passo', t:'Entendemos seu momento', d:'Você conta como está hoje: o que a empresa faz, o regime atual e o que não vai bem com a contabilidade. Sem formulário interminável.' },
   { n:'2º Passo', t:'Fazemos o diagnóstico', d:'Analisamos atividade, faturamento, CNAEs e o enquadramento tributário mais coerente com a sua realidade. Sem custo.' },
   { n:'3º Passo', t:'Cuidamos da migração', d:'Pedimos a documentação ao seu contador atual e conduzimos a transferência. Você não perde documento nem atrasa obrigação.' },
-  { n:'4º Passo', t:'Assumimos a rotina', d:'Escrita fiscal, contabilidade e folha integradas, com consultoria tributária inclusa e gente atendendo pelo nome.' },
+  { n:'4º Passo', t:'Assumimos a rotina', d:'Escrita fiscal, contabilidade e folha integradas, com consultoria tributária inclusa e um contador responsável pela sua conta.' },
 ];
 const depos = [
   { i:'E', n:'Edilson Bandeira', t:'Sou cliente desde 2023. O atendimento prestado pelos proprietários (Marcelo e Célia), bem como todos os colaboradores, é fantástico, sempre muito educados, cordiais e principalmente profissionais, atendendo todas as necessidades e demandas dos empresários. Estou muito satisfeito com a prestação de serviço. Recomendo a todos.' },
@@ -66,7 +66,7 @@ const faq = [
     <div>
       <span class="olho" style="color:#8fb0ff">Escritório físico em Osasco · desde 1996</span>
       <h1 style="color:#fff">Escritório de contabilidade em <span style="color:var(--azul)">Osasco</span>, atendendo empresas desde 1996.</h1>
-      <p class="lead claro">Contabilidade, escrita fiscal e folha com consultoria tributária inclusa. Não é contabilidade de prateleira que só emite guia: é contador que atende pelo nome.</p>
+      <p class="lead claro">Contabilidade, escrita fiscal e folha com consultoria tributária inclusa. Escritório próprio em Osasco, com contador responsável acompanhando a sua empresa.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px">
         <a class="btn btn-azul" href="#diagnostico">Quero meu diagnóstico gratuito</a>
         <a class="btn btn-linha claro" href={ZAP('Olá! Vim pelo site e quero falar com um contador da Sofisco.')}>Falar no WhatsApp</a>
@@ -80,9 +80,9 @@ const faq = [
 <div style="background:var(--azul-claro);border-bottom:1px solid var(--linha);padding:20px 0">
   <div class="wrap" style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px" id="faixa">
     <div style="border-left:3px solid var(--verde);padding-left:13px">
-      <div class="olho" style="color:#6a7688;margin-bottom:4px">Contabilidade completa</div>
+      <div class="olho" style="color:#6a7688;margin-bottom:4px">Honorários</div>
       <div style="font-size:1.15rem;font-weight:800;color:var(--verde);font-family:Manrope,sans-serif">a partir de R$ 400/mês</div>
-      <div style="font-size:.9rem;color:var(--tinta-2)">fiscal, contábil e folha, com consultoria</div>
+      <div style="font-size:.9rem;color:var(--tinta-2)">conforme porte, volume de notas e funcionários</div>
     </div>
     <div style="border-left:3px solid var(--azul);padding-left:13px">
       <div class="olho" style="color:#6a7688;margin-bottom:4px">Escritório físico</div>
@@ -105,7 +105,7 @@ const faq = [
     <div style="text-align:center;max-width:760px;margin:0 auto">
       <span class="olho">Três situações. Uma decisão bem orientada.</span>
       <h2>Em qual etapa o seu negócio está?</h2>
-      <p class="lead" style="margin:18px auto 0">A Sofisco organiza o caminho de acordo com a sua realidade, sem solução genérica e sem deixar dúvida importante para depois.</p>
+      <p class="lead" style="margin:18px auto 0">A Sofisco organiza o caminho de acordo com a sua realidade e com o regime em que a empresa está enquadrada.</p>
     </div>
     <div class="grid-3">
       {cards.map(c => (

@@ -1,0 +1,8 @@
+{
+  "name": "sofisco-lp",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@9.12.3",
+  "scripts": { "dev": "astro dev", "build": "astro build", "preview": "astro preview" },
+  "dependencies": { "astro": "5.13.2" }
+}

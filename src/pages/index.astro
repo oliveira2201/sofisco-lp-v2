@@ -1,37 +1,70 @@
 ---
 import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import Cena from '../components/Cena.astro';
 const ZAP = (t) => `https://wa.me/551136525424?text=${encodeURIComponent(t)}`;
+
 const cards = [
-  { n:'01', t:'Quero trocar de contador',
-    d:'Você já tem empresa e procura um acompanhamento mais próximo, com um contador responsável que explique cada decisão tributária antes dela acontecer. A migração é conduzida por nós: solicitamos a documentação e cuidamos da transferência.',
+  { n:'01', eixo:'TROCA', marca:'T', ico:'troca', cena:'transicao', destaque:false,
+    t:'Quero trocar de contador',
+    d:'Você já tem empresa e procura um acompanhamento mais próximo, com um contador responsável que explique cada decisão antes dela acontecer.',
+    itens:['Diagnóstico da situação atual','Organização da troca de informações','Revisão de obrigações e enquadramento','Transição conduzida pela Sofisco'],
     cta:'Planejar minha troca', msg:'Olá! Tenho empresa e quero trocar de contador. Podem me explicar como funciona a migração?' },
-  { n:'02', t:'Preciso de um contador para minha empresa',
-    d:'Escritório contábil com contador para empresa de comércio, serviços ou pequena indústria. Escrita fiscal, contabilidade e folha no mesmo lugar, com consultoria tributária inclusa e um contador responsável pela sua conta.',
+  { n:'02', eixo:'CONTABILIDADE', marca:'C', ico:'doc', cena:'rotina', destaque:true,
+    t:'Preciso de um contador para minha empresa',
+    d:'Escritório contábil com contador para empresa de comércio, serviços ou pequena indústria, com a rotina inteira no mesmo lugar.',
+    itens:['Escrita fiscal e apuração mensal','Contabilidade e balanço','Folha de pagamento e encargos','Consultoria tributária inclusa'],
     cta:'Falar sobre minha empresa', msg:'Olá! Preciso de um contador para a minha empresa. Podem me passar mais informações?' },
-  { n:'03', t:'Vou abrir e quero acompanhamento',
-    d:'Abrir empresa é a parte fácil. O que decide o custo do primeiro ano é o CNAE certo e o enquadramento certo, e é isso que organizamos na abertura de empresa, antes de você assinar qualquer coisa.',
+  { n:'03', eixo:'ABERTURA', marca:'A', ico:'predio', cena:'abertura', destaque:false,
+    t:'Vou abrir e quero acompanhamento',
+    d:'Abrir empresa é a parte fácil. O que decide o custo do primeiro ano é o CNAE certo e o enquadramento certo, definidos antes de você assinar.',
+    itens:['Análise de viabilidade e atividade','Escolha orientada dos CNAEs','Enquadramento no Simples Nacional','Acompanhamento até o CNPJ ativo'],
     cta:'Planejar minha abertura', msg:'Olá! Vou abrir uma empresa e quero acompanhamento contábil. Podem me ajudar?' },
 ];
+
+const provas = [
+  { ico:'selo',    t:'30+ anos',                  s:'Atuando desde 1996' },
+  { ico:'pessoas', t:'Atendimento personalizado',  s:'Contador responsável pela conta' },
+  { ico:'raio',    t:'Tecnologia integrada',       s:'Portal e WhatsApp no dia a dia' },
+];
+
+const faixa = [
+  { ico:'recibo', olho:'Honorários', v:'a partir de R$ 400/mês', s:'conforme porte, volume de notas e funcionários', destaque:true },
+  { ico:'pin',    olho:'Escritório físico', v:'Av. Dionysia Alves Barreto, 130', s:'Vila Osasco, Osasco/SP' },
+  { ico:'mapa',   olho:'Atendemos', v:'Osasco, Barueri e região', s:'Alphaville, Carapicuíba, Cotia e São Paulo' },
+  { ico:'fone',   olho:'Telefone', v:'(11) 3652-5424', s:'Seg a qui 8h-18h, sex 8h-17h', tel:true },
+];
+
 const riscos = [
-  { n:'01', t:'Você sabe se o CNAE registrado reflete exatamente o que a sua empresa vende hoje?' },
-  { n:'02', t:'Você recebe aviso antes de cada vencimento, ou costuma tomar conhecimento da obrigação depois do prazo?' },
-  { n:'03', t:'Você sabe o que uma revisão tributária feita fora de prazo representa em imposto, juros e multa?' },
+  { ico:'lupa',    t:'Você sabe se o CNAE registrado reflete exatamente o que a sua empresa vende hoje?' },
+  { ico:'relogio', t:'Você recebe aviso antes de cada vencimento, ou costuma tomar conhecimento da obrigação depois do prazo?', destaque:true },
+  { ico:'calc',    t:'Você sabe o que uma revisão tributária feita fora de prazo representa em imposto, juros e multa?' },
 ];
+
 const passos = [
-  { n:'1º Passo', t:'Entendemos seu momento', d:'Você conta como está hoje: o que a empresa faz, o regime atual e o que não vai bem com a contabilidade. Sem formulário interminável.' },
-  { n:'2º Passo', t:'Fazemos o diagnóstico', d:'Analisamos atividade, faturamento, CNAEs e o enquadramento tributário mais coerente com a sua realidade. Sem custo.' },
-  { n:'3º Passo', t:'Cuidamos da migração', d:'Pedimos a documentação ao seu contador atual e conduzimos a transferência. Você não perde documento nem atrasa obrigação.' },
-  { n:'4º Passo', t:'Assumimos a rotina', d:'Escrita fiscal, contabilidade e folha integradas, com consultoria tributária inclusa e um contador responsável pela sua conta.' },
+  { n:'1º Passo', ico:'fone',   t:'Entendemos seu momento', d:'Você conta como está hoje: o que a empresa faz, o regime atual e o que não vai bem com a contabilidade. Sem formulário interminável.' },
+  { n:'2º Passo', ico:'lupa',   t:'Fazemos o diagnóstico',  d:'Analisamos atividade, faturamento, CNAEs e o enquadramento tributário mais coerente com a sua realidade. Sem custo.' },
+  { n:'3º Passo', ico:'troca',  t:'Cuidamos da migração',   d:'Solicitamos a documentação ao contador atual e conduzimos a transferência. Você não perde documento nem atrasa obrigação.' },
+  { n:'4º Passo', ico:'escudo', t:'Assumimos a rotina',     d:'Escrita fiscal, contabilidade e folha integradas, com consultoria tributária inclusa e um contador responsável pela sua conta.' },
 ];
+
+const numeros = [
+  { v:'+1.500', l:'Empresas atendidas' },
+  { v:'30+',    l:'Anos de experiência' },
+  { v:'3',      l:'Regimes: Simples, Presumido e Real' },
+  { v:'9',      l:'Cidades atendidas na região' },
+];
+
 const depos = [
-  { i:'E', n:'Edilson Bandeira', t:'Sou cliente desde 2023. O atendimento prestado pelos proprietários (Marcelo e Célia), bem como todos os colaboradores, é fantástico, sempre muito educados, cordiais e principalmente profissionais, atendendo todas as necessidades e demandas dos empresários. Estou muito satisfeito com a prestação de serviço. Recomendo a todos.' },
-  { i:'F', n:'Flavio B. Pinheiro', t:'Somos clientes da Sofisco há mais de 15 anos, com duas empresas, e podemos afirmar com convicção: a confiança que depositamos nos serviços contratados só cresceu ao longo desse tempo. A qualidade técnica, a atenção aos detalhes e o comprometimento da equipe fazem toda a diferença.' },
-  { i:'K', n:'Katia Murro', t:'Sofisco é a minha contabilidade há mais de 20 anos e só tenho elogios a fazer. Rapidez, eficiência e tratamento humanizado.' },
-  { i:'N', n:'Norma Primo', t:'Sofisco é uma empresa séria, de extrema confiabilidade, altamente gabaritada e pronta para atender as mais diversas necessidades dos clientes. Profissionais competentes, prestativos e cordiais.' },
+  { i:'E', n:'Edilson Bandeira', a:'cliente desde 2023', t:'O atendimento prestado pelos proprietários (Marcelo e Célia), bem como todos os colaboradores, é fantástico, sempre muito educados, cordiais e principalmente profissionais, atendendo todas as necessidades e demandas dos empresários. Estou muito satisfeito com a prestação de serviço.' },
+  { i:'F', n:'Flavio B. Pinheiro', a:'cliente há mais de 15 anos', t:'Somos clientes da Sofisco há mais de 15 anos, com duas empresas, e podemos afirmar com convicção: a confiança que depositamos nos serviços contratados só cresceu ao longo desse tempo. A qualidade técnica, a atenção aos detalhes e o comprometimento da equipe fazem toda a diferença.' },
+  { i:'K', n:'Katia Murro', a:'cliente há mais de 20 anos', t:'Sofisco é a minha contabilidade há mais de 20 anos e só tenho elogios a fazer. Rapidez, eficiência e tratamento humanizado.' },
+  { i:'N', n:'Norma Primo', a:'cliente', t:'Sofisco é uma empresa séria, de extrema confiabilidade, altamente gabaritada e pronta para atender as mais diversas necessidades dos clientes. Profissionais competentes, prestativos e cordiais.' },
 ];
+
 const faq = [
-  { p:'Quanto custa a contabilidade da Sofisco?', r:'A partir de R$ 400 por mês para empresa no Simples Nacional, com escrita fiscal, contabilidade e folha inclusas, mais a consultoria tributária. O valor final depende do porte, do volume de notas e do número de funcionários.' },
-  { p:'Dá trabalho trocar de contador?', r:'O trabalho é nosso. Pedimos a documentação ao seu contador atual, conferimos o que está pendente e conduzimos a transferência. Você não precisa intermediar nem perder obrigação no caminho.' },
+  { p:'Quanto custa a contabilidade da Sofisco?', r:'Os honorários começam em R$ 400 por mês para empresa no Simples Nacional, com escrita fiscal, contabilidade e folha inclusas, mais a consultoria tributária. O valor final depende do porte, do volume de notas e do número de funcionários.' },
+  { p:'Dá trabalho trocar de contador?', r:'O trabalho é nosso. Solicitamos a documentação ao contador atual, conferimos o que está pendente e conduzimos a transferência. Você não precisa intermediar nem perder obrigação no caminho.' },
   { p:'Vocês atendem empresa de qual porte?', r:'Comércio, serviços e pequenas indústrias. Fazemos contabilidade para pequenas empresas no Simples Nacional e contabilidade para Lucro Presumido, incluindo contador para ME. É o porte em que a nossa estrutura entrega atenção de verdade.' },
   { p:'O atendimento é presencial ou online?', r:'Os dois. Fazemos contabilidade presencial no escritório físico de Osasco, na Vila Osasco, para quem prefere resolver olho no olho e quer um contador perto de você. O dia a dia corre por WhatsApp e pelo portal, com pessoa respondendo.' },
   { p:'Vocês atendem fora de Osasco?', r:'Sim. Atendemos Osasco, Barueri, Alphaville, Carapicuíba, Cotia, Santana de Parnaíba, Itapevi, Taboão da Serra e a zona oeste de São Paulo.' },
@@ -50,74 +83,107 @@ const faq = [
 </head>
 <body>
 
-<header style="position:sticky;top:0;z-index:50;background:rgba(10,24,48,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)">
-  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:76px">
-    <a href="/" style="display:flex;align-items:center;gap:12px">
-      <img src="/images/simbolo.webp" alt="Sofisco Contabilidade" width="40" height="40" style="width:40px;height:auto">
-      <span style="font-family:Manrope,sans-serif;font-weight:800;color:#fff;letter-spacing:.06em;line-height:1.1">SOFISCO<br><span style="font-size:.62rem;font-weight:500;letter-spacing:.2em;color:#93a2ba">CONTABILIDADE</span></span>
+<header class="topo">
+  <div class="wrap topo-in">
+    <a href="/" class="marca">
+      <img src="/images/simbolo.webp" alt="Sofisco Contabilidade" width="40" height="40">
+      <span>SOFISCO<br><span class="marca-sub">CONTABILIDADE</span></span>
     </a>
-    <a class="btn btn-azul" href={ZAP('Olá! Vim pelo site e quero falar com um contador da Sofisco.')} style="padding:12px 22px;font-size:.92rem">Falar com um contador</a>
+    <nav class="menu">
+      <a href="#etapas">Para você</a>
+      <a href="#passos">Como funciona</a>
+      <a href="#tradicao">Por que a Sofisco</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="btn btn-azul btn-sm" href={ZAP('Olá! Vim pelo site e quero falar com um contador da Sofisco.')}>
+      <span class="cta-longo">Falar com um contador</span><span class="cta-curto">Falar agora</span> <Icon n="seta" s={16} />
+    </a>
   </div>
 </header>
 
-<!-- 1. HERO -->
-<section class="hero-sec" style="background:var(--marinho);color:#fff;padding:72px 0 64px;position:relative;overflow:hidden">
+<!-- HERO -->
+<section class="hero">
+  <span class="orbe orbe-a" aria-hidden="true"></span>
+  <span class="orbe orbe-b" aria-hidden="true"></span>
   <div class="wrap grid-2">
-    <div>
-      <span class="olho" style="color:#8fb0ff">Escritório físico em Osasco · desde 1996</span>
-      <h1 style="color:#fff">Escritório de contabilidade em <span style="color:var(--azul)">Osasco</span>, atendendo empresas desde 1996.</h1>
-      <p class="lead claro">Contabilidade, escrita fiscal e folha com consultoria tributária inclusa. Escritório próprio em Osasco, com contador responsável acompanhando a sua empresa.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px">
-        <a class="btn btn-azul" href="#diagnostico">Quero meu diagnóstico gratuito</a>
+    <div class="sobe">
+      <span class="olho tracinho">Escritório físico em Osasco · desde 1996</span>
+      <h1>Escritório de contabilidade em <span class="az">Osasco</span>, atendendo empresas desde 1996.</h1>
+      <p class="lead claro">Contabilidade, escrita fiscal e folha com consultoria tributária inclusa. Escritório próprio, com contador responsável acompanhando a sua empresa.</p>
+      <div class="acoes">
+        <a class="btn btn-azul" href="#diagnostico">Quero meu diagnóstico gratuito <Icon n="seta" s={17} /></a>
         <a class="btn btn-linha claro" href={ZAP('Olá! Vim pelo site e quero falar com um contador da Sofisco.')}>Falar no WhatsApp</a>
       </div>
+      <ul class="checks">
+        <li><Icon n="checkCirc" s={18} c="#8fb0ff" /> Escrita fiscal, contabilidade e folha no mesmo escritório</li>
+        <li><Icon n="checkCirc" s={18} c="#8fb0ff" /> Consultoria tributária inclusa, sem cobrança por consulta</li>
+        <li><Icon n="checkCirc" s={18} c="#8fb0ff" /> Migração conduzida por nós, do pedido de documentos ao fim</li>
+      </ul>
     </div>
-    <div><img src="/images/hero.webp" alt="Equipe da Sofisco Contabilidade" width="475" height="595" style="border-radius:20px;width:100%;height:auto" fetchpriority="high"></div>
+    <div class="foto sobe atraso-1">
+      <img src="/images/hero.webp" alt="Contador da Sofisco atendendo um cliente no escritório de Osasco" width="475" height="595" fetchpriority="high">
+    </div>
   </div>
 </section>
 
-<!-- FAIXA: as duas primeiras perguntas de quem busca -->
-<div style="background:var(--azul-claro);border-bottom:1px solid var(--linha);padding:20px 0">
-  <div class="wrap" style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px" id="faixa">
-    <div style="border-left:3px solid var(--verde);padding-left:13px">
-      <div class="olho" style="color:#6a7688;margin-bottom:4px">Honorários</div>
-      <div style="font-size:1.15rem;font-weight:800;color:var(--verde);font-family:Manrope,sans-serif">a partir de R$ 400/mês</div>
-      <div style="font-size:.9rem;color:var(--tinta-2)">conforme porte, volume de notas e funcionários</div>
-    </div>
-    <div style="border-left:3px solid var(--azul);padding-left:13px">
-      <div class="olho" style="color:#6a7688;margin-bottom:4px">Escritório físico</div>
-      <div style="font-size:.95rem">Av. Dionysia Alves Barreto, 130<br>Vila Osasco, Osasco/SP</div>
-    </div>
-    <div style="border-left:3px solid var(--azul);padding-left:13px">
-      <div class="olho" style="color:#6a7688;margin-bottom:4px">Atendemos</div>
-      <div style="font-size:.95rem">Osasco, Barueri, Alphaville,<br>Carapicuíba, Cotia e São Paulo</div>
-    </div>
-    <div style="border-left:3px solid var(--azul);padding-left:13px">
-      <div class="olho" style="color:#6a7688;margin-bottom:4px">Telefone</div>
-      <div style="font-size:.95rem"><a href="tel:+551136525424" style="color:var(--azul);font-weight:700">(11) 3652-5424</a><br>Seg a qui 8h-18h, sex 8h-17h</div>
-    </div>
+<div class="tiras">
+<!-- PROVAS -->
+<div class="provas">
+  <div class="wrap provas-in">
+    {provas.map(p => (
+      <div class="prova">
+        <span class="prova-ico"><Icon n={p.ico} s={22} c="#8fb0ff" /></span>
+        <div><strong>{p.t}</strong><span>{p.s}</span></div>
+      </div>
+    ))}
   </div>
 </div>
 
-<!-- 2. TRES CAMINHOS -->
-<section class="creme">
+<!-- FAIXA: as perguntas que vem antes de qualquer outra -->
+<div class="faixa-wrap">
+  <div class="wrap faixa" id="faixa">
+    {faixa.map(f => (
+      <div class={'fx' + (f.destaque ? ' fx-on' : '')}>
+        <span class="fx-ico"><Icon n={f.ico} s={19} /></span>
+        <div>
+          <span class="olho fx-olho">{f.olho}</span>
+          {f.tel
+            ? <a class="fx-v" href="tel:+551136525424">{f.v}</a>
+            : <div class="fx-v">{f.v}</div>}
+          <div class="fx-s">{f.s}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+</div>
+
+<!-- ETAPAS -->
+<section id="etapas" class="creme">
   <div class="wrap">
-    <div style="text-align:center;max-width:760px;margin:0 auto">
+    <div class="cabeca">
       <span class="olho">Três situações. Uma decisão bem orientada.</span>
       <h2>Em qual etapa o seu negócio está?</h2>
-      <p class="lead" style="margin:18px auto 0">A Sofisco organiza o caminho de acordo com a sua realidade e com o regime em que a empresa está enquadrada.</p>
+      <p class="lead centro">A Sofisco organiza o caminho de acordo com a sua realidade e com o regime em que a empresa está enquadrada.</p>
     </div>
     <div class="grid-3">
-      {cards.map(c => (
-        <div style="background:#fff;border:1px solid var(--linha);border-radius:18px;padding:32px 28px;display:flex;flex-direction:column">
-          <span style="font-family:Manrope,sans-serif;font-weight:800;font-size:.85rem;color:var(--azul);letter-spacing:.1em">{c.n}</span>
-          <h3 style="margin:12px 0 14px;font-size:1.45rem;font-weight:750">{c.t}</h3>
-          <p style="color:var(--tinta-2);font-size:1rem;flex:1">{c.d}</p>
-          <a class="btn btn-linha" href={ZAP(c.msg)} style="margin-top:24px;align-self:flex-start">{c.cta}</a>
-        </div>
+      {cards.map((c,i) => (
+        <article class={'card sobe atraso-' + i + (c.destaque ? ' card-on' : '')}>
+          <span class="card-barra" aria-hidden="true"></span>
+          <span class="card-marca" aria-hidden="true">{c.marca}</span>
+          <div class="card-topo">{c.n} / {c.eixo}</div>
+          <span class={'chip' + (c.destaque ? ' chip-az' : '')}><Icon n={c.ico} s={21} c="#fff" /></span>
+          <h3>{c.t}</h3>
+          <p class="card-d">{c.d}</p>
+          <ul class="lista">
+            {c.itens.map(it => <li><Icon n="check" s={16} c="var(--azul)" w={2.4} /> {it}</li>)}
+          </ul>
+          <a class="link-seta" href={ZAP(c.msg)}>{c.cta} <Icon n="seta" s={16} /></a>
+          <Cena tipo={c.cena} />
+        </article>
       ))}
     </div>
-    <p style="margin:34px auto 0;max-width:900px;text-align:center;color:var(--tinta-2);font-size:1rem;line-height:1.75">
+    <p class="rodape-secao">
       Assessoria contábil completa, no mesmo escritório: contabilidade mensal, escrita fiscal,
       folha de pagamento, balanço, imposto de renda e consultoria tributária inclusa.
       Somos uma empresa de contabilidade para comércio, serviços e pequenas indústrias
@@ -126,179 +192,410 @@ const faq = [
   </div>
 </section>
 
-<!-- 3. RISCOS -->
+<!-- RISCOS -->
 <section class="cinza">
   <div class="wrap grid-2">
     <div>
       <span class="olho">Antes de decidir, pare e confira</span>
       <h2>Um detalhe agora pode virar custo depois.</h2>
       <p class="lead">A burocracia não é o maior problema. O risco está em tocar a empresa sem enxergar a consequência tributária de cada escolha.</p>
-      <a class="btn btn-azul" href="#diagnostico" style="margin-top:28px">Quero o diagnóstico</a>
+      <a class="btn btn-azul mt" href="#diagnostico">Quero o diagnóstico <Icon n="seta" s={17} /></a>
     </div>
-    <div style="display:flex;flex-direction:column;gap:14px">
-      {riscos.map(r => (
-        <div style="background:#fff;border:1px solid var(--linha);border-radius:14px;padding:22px 24px;display:flex;gap:16px">
-          <span style="font-family:Manrope,sans-serif;font-weight:800;color:var(--azul);font-size:1.05rem">{r.n}</span>
-          <p style="font-size:1rem;color:var(--tinta)">{r.t}</p>
+    <div class="riscos">
+      {riscos.map((r,i) => (
+        <div class={'risco sobe atraso-' + i + (r.destaque ? ' risco-on' : '')}>
+          <span class="risco-ico"><Icon n={r.ico} s={20} /></span>
+          <p>{r.t}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
 
-<!-- 4. PASSO A PASSO -->
-<section class="esc">
+<!-- PASSOS -->
+<section id="passos" class="esc">
   <div class="wrap">
-    <div style="max-width:720px">
+    <div class="cabeca">
       <span class="olho claro">Cada etapa, sem complicação</span>
       <h2>Trocar de contador é mais simples do que você pensa.</h2>
-      <p class="lead claro">A Sofisco organiza a parte técnica, os documentos e os próximos passos. Veja como:</p>
+      <p class="lead claro centro">A Sofisco organiza a parte técnica, os documentos e os próximos passos. Veja como:</p>
     </div>
-    <div class="grid-4">
-      {passos.map(p => (
-        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px 24px">
-          <span style="font-family:Manrope,sans-serif;font-weight:800;font-size:.8rem;color:var(--azul);letter-spacing:.08em">{p.n}</span>
-          <h3 style="margin:10px 0 12px;font-size:1.2rem">{p.t}</h3>
-          <p style="color:#c6d3e8;font-size:.97rem">{p.d}</p>
+    <div class="grid-4 passos">
+      {passos.map((p,i) => (
+        <div class={'passo sobe atraso-' + i}>
+          <div class="passo-h"><span class="passo-ico"><Icon n={p.ico} s={18} c="#8fb0ff" /></span><span class="passo-n">{p.n}</span></div>
+          <h3>{p.t}</h3>
+          <p>{p.d}</p>
         </div>
       ))}
     </div>
-    <p style="margin-top:40px;color:#dbe5f8">Sem custo para começar. Solicite uma avaliação inicial do seu cenário.
-      <a class="btn btn-azul" href="#diagnostico" style="margin-left:14px">Solicitar diagnóstico</a></p>
+    <div class="cta-linha">
+      <span>Sem custo para começar. Solicite uma avaliação inicial do seu cenário.</span>
+      <a class="btn btn-azul" href="#diagnostico">Solicitar diagnóstico <Icon n="seta" s={17} /></a>
+    </div>
   </div>
 </section>
 
-<!-- 5. TRADICAO -->
-<section class="esc-2">
+<!-- TRADICAO -->
+<section id="tradicao" class="esc-2">
   <div class="wrap grid-2">
     <div>
       <span class="olho claro">Experiência que reduz incertezas</span>
       <h2>Tradição no mercado. Presença em cada decisão.</h2>
-      <p class="lead claro">Fundada em 1996, a Sofisco une expertise sólida, atendimento personalizado e tecnologia integrada para impulsionar indústrias, comércios e prestadores de serviços da região de Osasco.</p>
+      <p class="lead claro">Fundada em 1996, a Sofisco une experiência, atendimento personalizado e tecnologia integrada para atender indústrias, comércios e prestadores de serviços da região de Osasco.</p>
     </div>
-    <div class="nums" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
-      {[['+1.500','Empresas atendidas'],['30+','Anos de experiência'],['Simples Nacional','Indústria, comércio e serviços'],['Compliance','Suporte fiscal especializado']].map(([a,b]) => (
-        <div style="background:rgba(255,255,255,.07);border-radius:14px;padding:24px">
-          <div style="font-family:Manrope,sans-serif;font-weight:800;font-size:1.6rem;color:var(--azul)">{a}</div>
-          <div style="color:#c6d3e8;font-size:.92rem;margin-top:6px">{b}</div>
-        </div>
+    <div class="nums">
+      {numeros.map((n,i) => (
+        <div class={'num sobe atraso-' + i}><strong>{n.v}</strong><span>{n.l}</span></div>
       ))}
     </div>
   </div>
 </section>
 
-<!-- 6. DEPOIMENTOS -->
+<!-- DEPOIMENTOS -->
 <section class="azulc">
   <div class="wrap">
-    <div style="text-align:center;max-width:700px;margin:0 auto">
+    <div class="cabeca">
       <span class="olho">Experiências reais</span>
       <h2>Depoimentos de nossos clientes</h2>
-      <p class="lead" style="margin:18px auto 0">A confiança construída ao longo dos anos, contada por quem conhece nosso atendimento.</p>
+      <p class="lead centro">A confiança construída ao longo dos anos, contada por quem conhece nosso atendimento.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px" class="depos">
-      {depos.map(d => (
-        <div style="background:#fff;border-radius:16px;padding:28px">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
-            <span style="width:42px;height:42px;border-radius:50%;background:var(--azul);color:#fff;display:grid;place-items:center;font-family:Manrope,sans-serif;font-weight:800">{d.i}</span>
-            <div><div style="font-family:Manrope,sans-serif;font-weight:750">{d.n}</div>
-            <div style="color:#f0a500;font-size:.85rem">★★★★★</div></div>
-          </div>
-          <p style="font-size:.98rem;color:var(--tinta-2)">“{d.t}”</p>
-          <div class="olho" style="color:#93a2ba;margin:14px 0 0;font-size:.66rem">Avaliação publicada no Google</div>
-        </div>
+    <div class="grid-4 depos">
+      {depos.map((d,i) => (
+        <figure class={'depo sobe atraso-' + i}>
+          <div class="estrelas" aria-label="5 de 5">★★★★★</div>
+          <blockquote>{d.t}</blockquote>
+          <figcaption>
+            <span class="avatar">{d.i}</span>
+            <span><strong>{d.n}</strong><span class="depo-a">{d.a}</span></span>
+          </figcaption>
+          <span class="depo-fonte">Avaliação publicada no Google</span>
+        </figure>
       ))}
     </div>
   </div>
 </section>
 
-<!-- 7. FAQ -->
-<section class="creme">
-  <div class="wrap" style="max-width:900px">
-    <span class="olho">Dúvidas frequentes</span>
-    <h2>Dúvidas frequentes</h2>
-    <div style="margin-top:36px;border-top:1px solid var(--linha)">
+<!-- FAQ -->
+<section id="duvidas" class="creme">
+  <div class="wrap estreito">
+    <div class="cabeca">
+      <span class="olho">Dúvidas frequentes</span>
+      <h2>Antes de falar com a gente</h2>
+    </div>
+    <div class="faq">
       {faq.map((f,i) => (
-        <details style="border-bottom:1px solid var(--linha);padding:20px 0">
-          <summary style="font-family:Manrope,sans-serif;font-weight:700;font-size:1.08rem;cursor:pointer;list-style:none;display:flex;gap:14px">
-            <span style="color:var(--azul)">{String(i+1).padStart(2,'0')}</span>{f.p}</summary>
-          <p style="margin-top:14px;color:var(--tinta-2);padding-left:34px">{f.r}</p>
+        <details open={i === 0}>
+          <summary><span class="faq-n">{String(i+1).padStart(2,'0')}</span>{f.p}<span class="faq-mais" aria-hidden="true"></span></summary>
+          <p>{f.r}</p>
         </details>
       ))}
     </div>
   </div>
 </section>
 
-<!-- 8. DIAGNOSTICO / FORMULARIO -->
-<section class="esc" id="diagnostico">
+<!-- FORM -->
+<section class="esc recorta" id="diagnostico">
+  <span class="orbe orbe-c" aria-hidden="true"></span>
   <div class="wrap grid-2">
     <div>
       <span class="olho claro">Seu próximo passo pode ser simples</span>
       <h2>Diagnóstico tributário sem custo.</h2>
       <p class="lead claro">Conte seu momento e receba uma avaliação inicial do seu cenário antes de decidir qualquer coisa. Se preferir, fale direto no WhatsApp.</p>
-      <a class="btn btn-zap" href={ZAP('Olá! Quero o diagnóstico tributário gratuito da Sofisco.')} style="margin-top:26px">Conversar no WhatsApp</a>
+      <ul class="checks mt">
+        <li><Icon n="checkCirc" s={18} c="#8fb0ff" /> Retornamos em horário comercial</li>
+        <li><Icon n="checkCirc" s={18} c="#8fb0ff" /> Sem compromisso de contratação</li>
+        <li><Icon n="checkCirc" s={18} c="#8fb0ff" /> Seus dados não são compartilhados</li>
+      </ul>
+      <a class="btn btn-zap mt" href={ZAP('Olá! Quero o diagnóstico tributário da Sofisco.')}>
+        <Icon n="zap" s={19} c="#fff" /> Conversar no WhatsApp
+      </a>
     </div>
-    <form action="https://orbyhub.com.br/api/lead" method="post"
-      style="background:#fff;border-radius:18px;padding:30px;display:grid;gap:14px;color:var(--tinta)">
-      <input type="hidden" name="source" value="lp-sofisco">
-      <label style="display:grid;gap:6px"><span style="font-size:.82rem;font-weight:600">Seu nome</span>
-        <input name="name" required placeholder="Nome completo" style="padding:13px 14px;border:1px solid var(--linha);border-radius:10px;font:inherit;font-size:1rem"></label>
-      <label style="display:grid;gap:6px"><span style="font-size:.82rem;font-weight:600">Empresa</span>
-        <input name="company" placeholder="Nome da empresa" style="padding:13px 14px;border:1px solid var(--linha);border-radius:10px;font:inherit;font-size:1rem"></label>
-      <label style="display:grid;gap:6px"><span style="font-size:.82rem;font-weight:600">WhatsApp</span>
-        <input name="phone" type="tel" required placeholder="(11) 99999-9999" style="padding:13px 14px;border:1px solid var(--linha);border-radius:10px;font:inherit;font-size:1rem"></label>
-      <label style="display:grid;gap:6px"><span style="font-size:.82rem;font-weight:600">E-mail</span>
-        <input name="email" type="email" placeholder="seu@email.com" style="padding:13px 14px;border:1px solid var(--linha);border-radius:10px;font:inherit;font-size:1rem"></label>
-      <label style="display:grid;gap:6px"><span style="font-size:.82rem;font-weight:600">Regime tributário atual</span>
-        <select name="regime" style="padding:13px 14px;border:1px solid var(--linha);border-radius:10px;font:inherit;font-size:1rem;background:#fff">
+    <form class="form" method="post" action="https://orbyhub.com.br/api/lead">
+      <input type="hidden" name="origem" value="lp-sofisco">
+      <label>Seu nome<input name="nome" required autocomplete="name" placeholder="Como podemos te chamar"></label>
+      <label>Empresa<input name="empresa" autocomplete="organization" placeholder="Razão social ou nome fantasia"></label>
+      <div class="dupla">
+        <label>WhatsApp<input name="telefone" required inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000"></label>
+        <label>E-mail<input name="email" type="email" autocomplete="email" placeholder="voce@empresa.com.br"></label>
+      </div>
+      <label>Regime tributário atual
+        <select name="regime">
           <option value="">Qual sua situação?</option>
-          <option>Simples Nacional</option><option>Lucro Presumido</option><option>Lucro Real</option>
-          <option>MEI</option><option>Não sei qual meu regime</option><option>Ainda não tenho empresa</option>
-        </select></label>
-      <button class="btn btn-azul" type="submit" style="justify-content:center;margin-top:4px">Quero meu diagnóstico gratuito</button>
-      <p style="font-size:.78rem;color:#8792a5;text-align:center">Retornamos em horário comercial. Seus dados não são compartilhados.</p>
+          <option>Simples Nacional</option>
+          <option>Lucro Presumido</option>
+          <option>Lucro Real</option>
+          <option>MEI</option>
+          <option>Não sei qual meu regime</option>
+          <option>Ainda não tenho empresa</option>
+        </select>
+      </label>
+      <button class="btn btn-azul largo" type="submit">Solicitar diagnóstico <Icon n="seta" s={17} /></button>
+      <small>Retornamos em horário comercial. Seus dados não são compartilhados.</small>
     </form>
   </div>
 </section>
 
-<footer style="background:var(--marinho-2);color:#c6d3e8;padding:56px 0 30px;font-size:.94rem">
-  <div class="wrap" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px">
+<footer class="pe">
+  <div class="wrap pe-in">
     <div>
-      <img src="/images/logo.webp" alt="Sofisco Contabilidade" width="150" height="52" style="width:150px;height:auto;margin-bottom:16px">
-      <p>Contabilidade consultiva para abrir, organizar e conduzir a próxima fase do seu negócio.</p>
+      <a href="/" class="marca"><img src="/images/simbolo.webp" alt="" width="40" height="40" aria-hidden="true">
+        <span>SOFISCO<br><span class="marca-sub">CONTABILIDADE</span></span></a>
+      <p class="pe-txt">Contabilidade consultiva para abrir, organizar e conduzir a próxima fase do seu negócio.</p>
     </div>
-    <div><div class="olho claro">Contato</div>
-      <p><a href="tel:+551136525424">(11) 3652-5424</a><br>
-      <a href="mailto:sofisco@sofisco.com.br">sofisco@sofisco.com.br</a><br>
-      Seg a qui: 8h-12h e 13h-18h<br>Sex: 8h-12h e 13h-17h</p></div>
-    <div><div class="olho claro">Endereço</div>
-      <p>Av. Dionysia Alves Barreto, 130<br>Vila Osasco, Osasco — SP<br>CEP 06086-040</p></div>
+    <div>
+      <h4>Contato</h4>
+      <a href="tel:+551136525424">(11) 3652-5424</a>
+      <a href="mailto:sofisco@sofisco.com.br">sofisco@sofisco.com.br</a>
+      <span>Seg a qui: 8h-12h e 13h-18h<br>Sex: 8h-12h e 13h-17h</span>
+    </div>
+    <div>
+      <h4>Endereço</h4>
+      <span>Av. Dionysia Alves Barreto, 130<br>Vila Osasco, Osasco/SP<br>CEP 06086-040</span>
+    </div>
+    <div>
+      <h4>Navegação</h4>
+      <a href="#etapas">Para você</a>
+      <a href="#passos">Como funciona</a>
+      <a href="#tradicao">Por que a Sofisco</a>
+      <a href="#duvidas">Dúvidas</a>
+    </div>
   </div>
-  <div class="wrap" style="border-top:1px solid rgba(255,255,255,.1);margin-top:36px;padding-top:20px;font-size:.82rem;color:#93a2ba">
-    © 2026 Sofisco Contabilidade · Consultoria contábil e tributária desde 1996
+  <div class="wrap pe-fim">
+    <span>© 2026 Sofisco Contabilidade Ltda · CNPJ 01.535.885/0001-96</span>
+    <span>Consultoria contábil e tributária desde 1996</span>
   </div>
 </footer>
 
-<a href={ZAP('Olá! Vim pelo site da Sofisco.')} aria-label="Falar no WhatsApp"
-  style="position:fixed;right:20px;bottom:20px;z-index:60;width:58px;height:58px;border-radius:50%;background:var(--zap);display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)">
-  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.96 7.96 0 01-4.106-1.138l-.29-.174-3.016.79.806-2.942-.19-.302A7.963 7.963 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+<a class="flutua" href={ZAP('Olá! Vim pelo site da Sofisco.')} aria-label="Falar no WhatsApp">
+  <Icon n="zap" s={26} c="#fff" />
 </a>
 
-<style>
+<style is:global>
+/* ---------- topo ---------- */
+.topo{position:sticky;top:0;z-index:50;background:rgba(10,24,48,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+.topo-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px}
+.marca{display:flex;align-items:center;gap:12px;font-family:Manrope,sans-serif;font-weight:800;color:#fff;letter-spacing:.06em;line-height:1.1}
+.marca img{width:40px;height:auto;border-radius:7px}
+.marca-sub{font-size:.62rem;font-weight:500;letter-spacing:.2em;color:#93a2ba}
+.menu{display:flex;gap:28px;font-size:.94rem;color:#c7d4e8;font-weight:600}
+.menu a{transition:.16s}
+.menu a:hover{color:#fff}
+.btn-sm{padding:11px 20px;font-size:.9rem;white-space:nowrap}
+.cta-curto{display:none}
+@media(max-width:1080px){.menu{display:none}}
+
+/* ---------- hero ---------- */
+.hero{background:var(--marinho);color:#fff;padding:76px 0 66px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(760px 460px at 78% 12%,rgba(95,134,233,.20),transparent 62%),
+             radial-gradient(560px 420px at 4% 96%,rgba(95,134,233,.11),transparent 66%)}
+.hero .wrap{position:relative;z-index:1}
+.orbe{position:absolute;border-radius:50%;border:1px solid rgba(143,176,255,.16);pointer-events:none}
+.orbe-a{width:420px;height:420px;left:-190px;bottom:-170px}
+.orbe-b{width:640px;height:640px;right:-280px;top:-230px}
+.recorta{position:relative;overflow:hidden}
+.orbe-c{width:520px;height:520px;right:-210px;bottom:-240px;border-color:rgba(143,176,255,.13)}
+.az{color:var(--azul)}
+.tracinho{display:flex;align-items:center;gap:12px;color:#8fb0ff}
+.tracinho::before{content:"";width:26px;height:2px;background:#8fb0ff;flex:none;border-radius:2px}
+.acoes{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.checks{list-style:none;margin-top:26px;display:grid;gap:11px}
+.checks li{display:flex;align-items:flex-start;gap:10px;font-size:.97rem;color:#cfdcf2}
+.checks li svg{flex:none;margin-top:2px}
+.foto img{width:100%;height:auto;border-radius:150px 22px 150px 22px;box-shadow:0 30px 70px rgba(0,0,0,.42)}
+
+/* ---------- provas ---------- */
+.provas{background:var(--marinho-2);border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)}
+.provas-in{display:grid;grid-template-columns:repeat(3,1fr)}
+.prova{display:flex;align-items:center;gap:14px;padding:24px 26px;color:#fff}
+.prova + .prova{border-left:1px solid rgba(255,255,255,.08)}
+.prova-ico{width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:11px;background:rgba(95,134,233,.16)}
+.prova strong{display:block;font-family:Manrope,sans-serif;font-size:1.06rem;font-weight:750}
+.prova span{font-size:.85rem;color:#93a2ba}
 @media(max-width:900px){
-  section{padding:56px 0}
-  /* hero enxuto: a faixa com preco e endereco tem que caber na 1a tela (medido 390x844) */
-  .hero-sec{padding:40px 0 20px!important}
-  .hero-sec .lead{font-size:1rem;margin-top:14px}
-  .hero-sec img{max-height:140px;object-fit:cover;object-position:top}
-  .hero-sec .grid-2{gap:20px!important}
-  .nums{grid-template-columns:1fr!important}
-  #faixa{grid-template-columns:repeat(2,1fr)!important;gap:14px!important}
-  .depos{grid-template-columns:1fr!important}
-  footer > .wrap{grid-template-columns:1fr!important;gap:28px!important}
-  header .btn{display:none!important}
+  .provas-in{grid-template-columns:1fr}
+  .prova + .prova{border-left:0;border-top:1px solid rgba(255,255,255,.08)}
+  .prova{padding:15px 4px}
 }
-@media(max-width:520px){ #faixa{grid-template-columns:1fr!important} }
-details summary::-webkit-details-marker{display:none}
+
+/* ---------- faixa ---------- */
+.faixa-wrap{background:var(--azul-claro);border-bottom:1px solid var(--linha)}
+.faixa{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:22px 24px}
+.fx{display:flex;gap:12px;padding-left:14px;border-left:3px solid var(--azul)}
+.fx-on{border-left-color:var(--verde)}
+.fx-ico{color:var(--azul);flex:none;margin-top:3px}
+.fx-on .fx-ico{color:var(--verde)}
+.fx-olho{color:#6a7688;margin-bottom:3px;font-size:.68rem}
+.fx-v{font-size:1.02rem;font-weight:800;font-family:Manrope,sans-serif;color:var(--tinta);line-height:1.25}
+.fx-on .fx-v{color:var(--verde);font-size:1.14rem}
+a.fx-v{color:var(--azul)}
+.fx-s{font-size:.85rem;color:var(--tinta-2);line-height:1.4}
+@media(max-width:900px){.faixa{grid-template-columns:1fr 1fr;gap:14px;padding:16px 24px}}
+@media(max-width:520px){.faixa{grid-template-columns:1fr}}
+
+/* as duas tiras: no celular a faixa com honorarios e endereco vem antes da prova social */
+.tiras{display:flex;flex-direction:column}
+@media(max-width:900px){
+  .tiras .provas{order:2}
+  .tiras .faixa-wrap{order:1}
+}
+
+/* ---------- cabecalhos ---------- */
+.cabeca{text-align:center;max-width:780px;margin:0 auto}
+.lead.centro{margin-left:auto;margin-right:auto}
+.estreito{max-width:880px}
+.mt{margin-top:26px}
+.rodape-secao{margin:38px auto 0;max-width:900px;text-align:center;color:var(--tinta-2);font-size:1rem;line-height:1.75}
+
+/* ---------- cards ---------- */
+.card{position:relative;background:#fff;border:1px solid var(--linha);border-radius:20px;padding:32px 28px 28px;
+  display:flex;flex-direction:column;overflow:hidden;box-shadow:0 2px 4px rgba(16,35,66,.04);transition:.24s}
+.card:hover{transform:translateY(-5px);box-shadow:0 22px 46px rgba(16,35,66,.13);border-color:#c3d5f5}
+.card-on{background:linear-gradient(178deg,#f4f8ff,#fff 42%)}
+.card-barra{position:absolute;top:0;left:28px;width:64px;height:4px;border-radius:0 0 4px 4px;background:var(--azul)}
+.card-marca{position:absolute;top:14px;right:24px;font-family:Manrope,sans-serif;font-size:5.4rem;font-weight:800;
+  line-height:1;color:#0a1830;opacity:.055;pointer-events:none}
+.card-topo{font-size:.7rem;font-weight:800;letter-spacing:.15em;color:#8794aa;text-transform:uppercase}
+.chip{width:46px;height:46px;border-radius:13px;background:var(--marinho);display:grid;place-items:center;margin:16px 0 18px}
+.chip-az{background:var(--azul)}
+.card h3{font-size:1.42rem;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.card-d{color:var(--tinta-2);font-size:.99rem;margin-top:12px}
+.lista{list-style:none;margin-top:20px;display:grid;gap:10px}
+.lista li{display:flex;align-items:flex-start;gap:9px;font-size:.95rem;color:var(--tinta)}
+.lista li svg{flex:none;margin-top:4px}
+.link-seta{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:22px;
+  font-family:Manrope,sans-serif;font-weight:750;color:var(--azul);width:fit-content}
+.link-seta svg{transition:transform .18s}
+.card:hover .link-seta svg{transform:translateX(4px)}
+
+/* ---------- riscos ---------- */
+.riscos{display:grid;gap:14px}
+.risco{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--linha);
+  border-radius:15px;padding:20px 22px;box-shadow:0 2px 4px rgba(16,35,66,.04);transition:.2s}
+.risco:hover{transform:translateX(4px);border-color:#c3d5f5}
+.risco p{font-size:1rem;line-height:1.55}
+.risco-ico{width:38px;height:38px;flex:none;display:grid;place-items:center;border-radius:11px;
+  background:var(--azul-claro);color:var(--azul)}
+.risco-on{background:var(--marinho);border-color:var(--marinho);color:#fff}
+.risco-on .risco-ico{background:rgba(255,255,255,.12);color:#8fb0ff}
+
+/* ---------- passos ---------- */
+.passo{border-top:2px solid rgba(143,176,255,.26);padding-top:20px}
+.passo-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.passo-ico{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:rgba(95,134,233,.16)}
+.passo-n{font-size:.74rem;font-weight:800;letter-spacing:.14em;color:#8fb0ff;text-transform:uppercase}
+.passo h3{font-size:1.14rem;margin-bottom:9px}
+.passo p{font-size:.94rem;color:#b9c8de}
+.cta-linha{margin-top:52px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:22px 26px}
+.cta-linha span{color:#cfdcf2}
+
+/* ---------- numeros ---------- */
+.nums{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.num{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:15px;padding:22px 20px;transition:.2s}
+.num:hover{background:rgba(95,134,233,.14);border-color:rgba(143,176,255,.34)}
+.num strong{display:block;font-family:Manrope,sans-serif;font-size:2.1rem;font-weight:800;color:#fff;line-height:1}
+.num span{display:block;margin-top:7px;font-size:.87rem;color:#93a2ba}
+
+/* ---------- depoimentos ---------- */
+.depo{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:26px 24px;display:flex;flex-direction:column;
+  box-shadow:0 2px 4px rgba(16,35,66,.04);transition:.22s}
+.depo:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(16,35,66,.12)}
+.estrelas{color:#f2a93b;letter-spacing:.14em;font-size:.95rem}
+.depo blockquote{margin:14px 0 20px;font-size:.95rem;color:var(--tinta-2);line-height:1.62;flex:1}
+.depo figcaption{display:flex;align-items:center;gap:12px}
+.avatar{width:40px;height:40px;flex:none;border-radius:50%;background:var(--azul);color:#fff;display:grid;place-items:center;
+  font-family:Manrope,sans-serif;font-weight:800}
+.depo figcaption strong{display:block;font-size:.95rem;font-family:Manrope,sans-serif}
+.depo-a{font-size:.8rem;color:var(--tinta-2)}
+.depo-fonte{margin-top:14px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#9aa7bb}
+
+/* ---------- faq ---------- */
+.faq{margin-top:42px;display:grid;gap:12px}
+.faq details{background:#fff;border:1px solid var(--linha);border-radius:15px;overflow:hidden;transition:.2s}
+.faq details[open]{border-color:#c3d5f5;box-shadow:0 10px 26px rgba(16,35,66,.07)}
+.faq summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:14px;padding:20px 22px;
+  font-family:Manrope,sans-serif;font-weight:750;font-size:1.05rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq-n{font-size:.78rem;font-weight:800;color:var(--azul);letter-spacing:.1em;flex:none}
+.faq-mais{margin-left:auto;flex:none;width:14px;height:14px;position:relative}
+.faq-mais::before,.faq-mais::after{content:"";position:absolute;background:var(--azul);border-radius:2px;transition:.2s}
+.faq-mais::before{left:0;right:0;top:6px;height:2px}
+.faq-mais::after{top:0;bottom:0;left:6px;width:2px}
+.faq details[open] .faq-mais::after{transform:scaleY(0)}
+.faq details p{padding:0 22px 22px 56px;color:var(--tinta-2);font-size:1rem}
+
+/* ---------- form ---------- */
+.form{background:#fff;border-radius:20px;padding:30px;display:grid;gap:15px;box-shadow:0 26px 60px rgba(0,0,0,.3)}
+.form label{display:grid;gap:6px;font-size:.83rem;font-weight:700;color:var(--tinta-2);font-family:Manrope,sans-serif}
+.form input,.form select{width:100%;padding:13px 14px;border:1.5px solid var(--linha);border-radius:11px;
+  font-size:1rem;font-family:inherit;color:var(--tinta);background:#fff;transition:.16s}
+.form input:focus,.form select:focus{outline:none;border-color:var(--azul);box-shadow:0 0 0 4px rgba(95,134,233,.15)}
+.form input::placeholder{color:#a9b4c5}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.largo{width:100%;justify-content:center;margin-top:4px}
+.form small{color:var(--tinta-2);font-size:.8rem;text-align:center}
+@media(max-width:520px){.dupla{grid-template-columns:1fr}.form{padding:24px 20px}}
+
+/* ---------- rodape ---------- */
+.pe{background:var(--marinho);color:#c7d4e8;padding:64px 0 0}
+.pe-in{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:38px;padding-bottom:44px}
+.pe h4{color:#fff;font-family:Manrope,sans-serif;font-size:.98rem;margin-bottom:14px}
+.pe a,.pe span{display:block;font-size:.92rem;margin-bottom:8px;transition:.16s}
+.pe a:hover{color:#fff}
+.pe-txt{margin-top:16px;font-size:.92rem;max-width:34ch}
+.pe-fim{border-top:1px solid rgba(255,255,255,.09);padding:20px 24px;display:flex;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;font-size:.83rem;color:#8494ad}
+.pe-fim span{margin:0}
+@media(max-width:900px){.pe-in{grid-template-columns:1fr 1fr;gap:28px}}
+@media(max-width:520px){.pe-in{grid-template-columns:1fr}}
+
+/* ---------- flutuante ---------- */
+.flutua{position:fixed;right:20px;bottom:20px;z-index:60;width:58px;height:58px;border-radius:50%;
+  background:var(--zap);display:grid;place-items:center;box-shadow:0 10px 26px rgba(37,211,102,.42);transition:.2s}
+.flutua:hover{transform:scale(1.07)}
+
+/* ---------- animacao de entrada (CSS puro, sem JS) ---------- */
+@keyframes sobe{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.sobe{animation:sobe .62s cubic-bezier(.22,.68,.36,1) both}
+.atraso-0{animation-delay:.02s}
+.atraso-1{animation-delay:.1s}
+.atraso-2{animation-delay:.18s}
+.atraso-3{animation-delay:.26s}
+/* Fora do hero a entrada e por ROLAGEM, e ai a opacidade NUNCA entra na conta:
+   animacao presa no estado inicial deixaria o card invisivel, e conteudo que
+   some e pior que conteudo sem animacao. So o deslocamento e animado. */
+@keyframes desliza{from{transform:translateY(22px)}to{transform:none}}
+@supports (animation-timeline: view()){
+  section .sobe{animation:desliza .6s cubic-bezier(.22,.68,.36,1) both;
+    animation-timeline:view();animation-range:entry 0% cover 24%;animation-delay:0s;opacity:1}
+  .hero .sobe{animation:sobe .62s cubic-bezier(.22,.68,.36,1) both;animation-timeline:auto}
+}
+@media(prefers-reduced-motion:reduce){.sobe{animation:none!important;opacity:1!important;transform:none!important}}
+
+/* ---------- celular ---------- */
+@media(max-width:900px){
+  section{padding:58px 0}
+  /* o botao do topo nao pode quebrar linha: em 390px ele empurrava o logo */
+  .topo-in{height:64px;gap:10px}
+  .cta-longo{display:none}
+  .cta-curto{display:inline}
+  .btn-sm{padding:10px 15px;font-size:.85rem;white-space:nowrap}
+  .marca{font-size:.95rem}
+  .marca img{width:34px}
+  .hero{padding:34px 0 12px}
+  .hero .lead{font-size:1rem;margin-top:14px}
+  .hero .grid-2{gap:22px}
+  /* a faixa com honorarios e endereco precisa caber na 1a tela: a foto encolhe e os bullets saem */
+  .foto img{max-height:104px;object-fit:cover;object-position:50% 44%;border-radius:60px 16px 60px 16px}
+  .hero .checks{display:none}
+  .card{padding:28px 22px 24px}
+  .card-marca{font-size:4.2rem}
+  .cta-linha{flex-direction:column;align-items:flex-start}
+  .faq summary{font-size:.99rem;padding:17px 18px}
+  .faq details p{padding:0 18px 18px 18px}
+}
 </style>
 </body>
 </html>

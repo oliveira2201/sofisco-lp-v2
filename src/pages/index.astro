@@ -264,7 +264,7 @@ const faq = [
     </div>
     <div class="faq">
       {faq.map((f,i) => (
-        <details open={i === 0}>
+        <details>
           <summary><span class="faq-n">{String(i+1).padStart(2,'0')}</span>{f.p}<span class="faq-mais" aria-hidden="true"></span></summary>
           <p>{f.r}</p>
         </details>
@@ -534,10 +534,10 @@ const faq = [
   gap:14px;flex-wrap:wrap;font-size:.83rem;color:#8494ad}
 .pe-fim span{margin:0}
 /* .pe a{display:block} tem especificidade maior, entao a regra precisa do .pe junto */
-.pe a.agencia{display:inline-flex;align-items:center;gap:10px;opacity:.85;transition:.18s}
+.pe a.agencia{display:inline-flex;align-items:center;gap:12px;opacity:.85;transition:.18s}
 .pe a.agencia:hover{opacity:1}
 .pe .agencia span{display:inline;margin:0;font-size:.92rem;color:#9aa9c0;white-space:nowrap}
-.pe .agencia img{width:48px;height:auto;margin:0}
+.pe .agencia img{width:112px;height:auto;margin:0}
 @media(max-width:900px){.pe-in{grid-template-columns:1fr 1fr;gap:28px}}
 @media(max-width:520px){.pe-in{grid-template-columns:1fr}}
 
@@ -584,6 +584,10 @@ const faq = [
   .cta-linha{flex-direction:column;align-items:flex-start}
   .faq summary{font-size:.99rem;padding:17px 18px}
   .faq details p{padding:0 18px 18px 18px}
+  /* o flutuante do zap fica fixo no canto inferior direito: a assinatura desce
+     pro lado esquerdo e o rodape ganha folga pra nao ficar debaixo dele */
+  .pe-fim{flex-direction:column;align-items:flex-start;gap:18px;padding-bottom:92px}
+  .pe .agencia img{width:96px}
 }
 </style>
 </body>

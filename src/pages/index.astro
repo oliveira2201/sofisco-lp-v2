@@ -13,7 +13,7 @@ const cards = [
   { n:'02', eixo:'CONTABILIDADE', marca:'C', ico:'doc', cena:'rotina', destaque:true,
     t:'Preciso de um contador para minha empresa',
     d:'Escritório contábil com contador para empresa de comércio, serviços ou pequena indústria, com a rotina inteira no mesmo lugar.',
-    itens:['Escrita fiscal e apuração mensal','Contabilidade e balanço','Folha de pagamento e encargos','Consultoria tributária inclusa'],
+    itens:['Escrita fiscal e apuração mensal','Contabilidade e balanço','Departamento pessoal e encargos','Consultoria tributária inclusa'],
     cta:'Falar sobre minha empresa', msg:'Olá! Preciso de um contador para a minha empresa. Podem me passar mais informações?' },
   { n:'03', eixo:'ABERTURA', marca:'A', ico:'predio', cena:'abertura', destaque:false,
     t:'Vou abrir e quero acompanhamento',
@@ -39,7 +39,7 @@ const passos = [
   { n:'1º Passo', ico:'fone',   t:'Entendemos seu momento', d:'Você conta como está hoje: o que a empresa faz, o regime atual e o que não vai bem com a contabilidade. Sem formulário interminável.' },
   { n:'2º Passo', ico:'lupa',   t:'Fazemos o diagnóstico',  d:'Analisamos atividade, faturamento, CNAEs e o enquadramento tributário mais coerente com a sua realidade. Sem custo.' },
   { n:'3º Passo', ico:'troca',  t:'Cuidamos da migração',   d:'Solicitamos a documentação ao contador atual e conduzimos a transferência. Você não perde documento nem atrasa obrigação.' },
-  { n:'4º Passo', ico:'escudo', t:'Assumimos a rotina',     d:'Escrita fiscal, contabilidade e folha integradas, com consultoria tributária inclusa e um contador responsável pela sua conta.' },
+  { n:'4º Passo', ico:'escudo', t:'Assumimos a rotina',     d:'Escrita fiscal, contabilidade e departamento pessoal integrados, com consultoria tributária inclusa e um contador responsável pela sua conta.' },
 ];
 
 const numeros = [
@@ -57,7 +57,7 @@ const depos = [
 ];
 
 const faq = [
-  { p:'Quanto custa a contabilidade da Sofisco?', r:'Os honorários começam em R$ 400 por mês para empresa no Simples Nacional, com escrita fiscal, contabilidade e folha inclusas, mais a consultoria tributária. O valor final depende do porte, do volume de notas e do número de funcionários.' },
+  { p:'Quanto custa a contabilidade da Sofisco?', r:'Os honorários começam em R$ 400 por mês para empresa no Simples Nacional, com escrita fiscal, contabilidade e departamento pessoal inclusos, mais a consultoria tributária. O valor final depende do porte, do volume de notas e do número de funcionários.' },
   { p:'Dá trabalho trocar de contador?', r:'O trabalho é nosso. Solicitamos a documentação ao contador atual, conferimos o que está pendente e conduzimos a transferência. Você não precisa intermediar nem perder obrigação no caminho.' },
   { p:'Vocês atendem empresa de qual porte?', r:'Comércio, serviços e pequenas indústrias. Fazemos contabilidade para pequenas empresas no Simples Nacional e contabilidade para Lucro Presumido, incluindo contador para ME. É o porte em que a nossa estrutura entrega atenção de verdade.' },
   { p:'O atendimento é presencial ou online?', r:'Os dois. Fazemos contabilidade presencial no escritório físico de Osasco, na Vila Osasco, para quem prefere resolver olho no olho e quer um contador perto de você. O dia a dia corre por WhatsApp e pelo portal, com pessoa respondendo.' },
@@ -69,7 +69,7 @@ const faq = [
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Escritório de Contabilidade em Osasco | Sofisco, desde 1996</title>
-<meta name="description" content="Escritório de contabilidade em Osasco desde 1996. Atendemos empresas de Osasco, Barueri, Alphaville e região. Contabilidade, escrita fiscal, folha e consultoria tributária a partir de R$ 400/mês.">
+<meta name="description" content="Escritório de contabilidade em Osasco desde 1996. Atendemos empresas de Osasco, Barueri, Alphaville e região. Contabilidade, escrita fiscal, departamento pessoal e consultoria tributária a partir de R$ 400/mês.">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -113,13 +113,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="sobe">
       <span class="olho tracinho">Escritório físico em Osasco · desde 1996</span>
       <h1>Escritório de contabilidade em <span class="az">Osasco</span>, atendendo empresas desde 1996.</h1>
-      <p class="lead claro">Contabilidade, escrita fiscal e folha com consultoria tributária inclusa. Escritório próprio, com contador responsável acompanhando a sua empresa.</p>
+      <p class="lead claro">Contabilidade, escrita fiscal e departamento pessoal com consultoria tributária inclusa. Escritório próprio, com contador responsável acompanhando a sua empresa.</p>
       <div class="acoes">
         <a class="btn btn-azul" onclick="dataLayer.push({event:'cta_click',click_location:'hero'})" href="#diagnostico">Quero meu diagnóstico gratuito <Icon n="seta" s={17} /></a>
         <a class="btn btn-linha claro" onclick="dataLayer.push({event:'whatsapp_click',click_location:'hero'})" href={ZAP('Olá! Vim pelo site e quero falar com um contador da Sofisco.')}>Falar no WhatsApp</a>
       </div>
       <ul class="checks">
-        <li><Icon n="checkCirc" s={18} c="#8fb0ff" /> Escrita fiscal, contabilidade e folha no mesmo escritório</li>
+        <li><Icon n="checkCirc" s={18} c="#8fb0ff" /> Escrita fiscal, contabilidade e departamento pessoal no mesmo escritório</li>
         <li><Icon n="checkCirc" s={18} c="#8fb0ff" /> Consultoria tributária inclusa, sem cobrança por consulta</li>
         <li><Icon n="checkCirc" s={18} c="#8fb0ff" /> Migração conduzida por nós, do pedido de documentos ao fim</li>
       </ul>
@@ -169,7 +169,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <p class="rodape-secao">
       Assessoria contábil completa, no mesmo escritório: contabilidade mensal, escrita fiscal,
-      folha de pagamento, balanço, imposto de renda e consultoria tributária inclusa.
+      departamento pessoal, balanço, imposto de renda e consultoria tributária inclusa.
       Somos uma empresa de contabilidade para comércio, serviços e pequenas indústrias
       de Osasco e da Grande São Paulo.
     </p>

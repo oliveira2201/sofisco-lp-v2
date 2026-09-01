@@ -34,7 +34,7 @@ img{max-width:100%;display:block}
 .olho.claro{color:#93a2ba}
 .lead{font-size:1.3rem;line-height:1.65;color:var(--tinta-2);max-width:60ch;margin-top:20px}
 .lead.claro{color:#dbe5f8}
-section{padding:84px 0}
+section{padding:62px 0}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:12px;font-weight:700;font-size:1rem;font-family:Manrope,sans-serif;border:1.5px solid transparent;transition:.18s;cursor:pointer}
 .btn-azul{background:var(--azul);color:#fff}
 .btn-azul:hover{background:var(--azul-esc)}

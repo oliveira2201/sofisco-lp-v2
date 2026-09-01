@@ -411,7 +411,7 @@ const faq = [
 .lead.centro{margin-left:auto;margin-right:auto}
 .estreito{max-width:880px}
 .mt{margin-top:26px}
-.rodape-secao{margin:34px auto 0;max-width:980px;text-align:center;color:var(--tinta-2);font-size:1.16rem;line-height:1.7}
+.rodape-secao{margin:30px auto 0;max-width:980px;text-align:center;color:var(--tinta-2);font-size:1.16rem;line-height:1.7}
 
 /* ---------- cards ---------- */
 .card{position:relative;background:#fff;border:1px solid var(--linha);border-radius:20px;padding:32px 28px 28px;
@@ -471,7 +471,7 @@ const faq = [
 .passo-n{font-size:.74rem;font-weight:800;letter-spacing:.14em;color:#8fb0ff;text-transform:uppercase}
 .passo h3{font-size:1.32rem;letter-spacing:-.02em;margin-bottom:10px}
 .passo p{font-size:1.12rem;line-height:1.6;color:#d3dfef}
-.cta-linha{margin-top:52px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;
+.cta-linha{margin-top:44px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;
   background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:22px 26px}
 .cta-linha span{color:#dde7f7;font-size:1.15rem}
 
@@ -523,7 +523,7 @@ const faq = [
 @media(max-width:520px){.dupla{grid-template-columns:1fr}.form{padding:24px 20px}}
 
 /* ---------- rodape ---------- */
-.pe{background:var(--marinho);color:#c7d4e8;padding:64px 0 0}
+.pe{background:var(--marinho);color:#c7d4e8;padding:56px 0 0}
 .pe-in{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:38px;padding-bottom:44px}
 .pe h4{color:#fff;font-family:Manrope,sans-serif;font-size:.98rem;margin-bottom:14px}
 .pe a,.pe span{display:block;font-size:1.06rem;margin-bottom:9px;transition:.16s}
@@ -533,10 +533,11 @@ const faq = [
 .pe-fim{border-top:1px solid rgba(255,255,255,.09);padding:20px 24px;display:flex;justify-content:space-between;
   gap:14px;flex-wrap:wrap;font-size:.83rem;color:#8494ad}
 .pe-fim span{margin:0}
-.agencia{display:flex;align-items:center;gap:12px;opacity:.85;transition:.18s}
-.agencia:hover{opacity:1}
-.agencia span{margin:0;font-size:.85rem;color:#8494ad;white-space:nowrap}
-.agencia img{width:96px;height:auto}
+/* .pe a{display:block} tem especificidade maior, entao a regra precisa do .pe junto */
+.pe a.agencia{display:inline-flex;align-items:center;gap:14px;opacity:.85;transition:.18s}
+.pe a.agencia:hover{opacity:1}
+.pe .agencia span{display:inline;margin:0;font-size:.92rem;color:#9aa9c0;white-space:nowrap}
+.pe .agencia img{width:138px;height:auto;margin:0}
 @media(max-width:900px){.pe-in{grid-template-columns:1fr 1fr;gap:28px}}
 @media(max-width:520px){.pe-in{grid-template-columns:1fr}}
 
@@ -565,7 +566,7 @@ const faq = [
 
 /* ---------- celular ---------- */
 @media(max-width:900px){
-  section{padding:58px 0}
+  section{padding:52px 0}
   /* o botao do topo nao pode quebrar linha: em 390px ele empurrava o logo */
   .topo-in{height:64px;gap:10px}
   .cta-longo{display:none}

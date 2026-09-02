@@ -297,12 +297,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <Icon n="zap" s={19} c="#fff" /> Conversar no WhatsApp
       </a>
     </div>
-    <form class="form" method="post" action="https://orbyhub.com.br/api/lead">
-      <input type="hidden" name="origem" value="lp-sofisco">
-      <label>Seu nome<input name="nome" required autocomplete="name" placeholder="Como podemos te chamar"></label>
-      <label>Empresa<input name="empresa" autocomplete="organization" placeholder="Razão social ou nome fantasia"></label>
+    <form class="form" id="formLead" novalidate>
+      <label class="mel" aria-hidden="true">Site<input name="website" tabindex="-1" autocomplete="off"></label>
+      <label>Seu nome<input name="name" required autocomplete="name" placeholder="Como podemos te chamar"></label>
+      <label>Empresa<input name="company" autocomplete="organization" placeholder="Razão social ou nome fantasia"></label>
       <div class="dupla">
-        <label>WhatsApp<input name="telefone" required inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000"></label>
+        <label>WhatsApp<input name="phone" required inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000"></label>
         <label>E-mail<input name="email" type="email" autocomplete="email" placeholder="voce@empresa.com.br"></label>
       </div>
       <label>Regime tributário atual
@@ -316,7 +316,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <option>Ainda não tenho empresa</option>
         </select>
       </label>
-      <button class="btn btn-azul largo" onclick="dataLayer.push({event:'cta_click',click_location:'form_submit'})" type="submit">Solicitar diagnóstico <Icon n="seta" s={17} /></button>
+      <button class="btn btn-azul largo" id="btnLead" type="submit">Solicitar diagnóstico <Icon n="seta" s={17} /></button>
       <small>Retornamos em horário comercial. Seus dados não são compartilhados.</small>
     </form>
   </div>
@@ -356,6 +356,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </a>
   </div>
 </footer>
+
+<script is:inline>
+// Envio do formulario: POST em JSON pro mesmo endpoint da pagina anterior.
+// Sem isso o navegador navegava pro endereco do action e o lead se perdia.
+(function(){
+  var f=document.getElementById('formLead'), b=document.getElementById('btnLead');
+  if(!f||!b) return;
+  var txt=b.innerHTML;
+  f.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var d=new FormData(f);
+    if((d.get('website')||'').trim()) return;            // isca de robo preenchida: ignora
+    if(!(d.get('name')||'').trim() || !(d.get('phone')||'').trim()){
+      b.innerHTML='Preencha nome e WhatsApp'; setTimeout(function(){b.innerHTML=txt;},2500); return;
+    }
+    b.disabled=true; b.innerHTML='Enviando...';
+    var payload={site:'sofisco', name:d.get('name')||'', company:d.get('company')||'',
+                 email:d.get('email')||'', phone:d.get('phone')||'', regime:d.get('regime')||'',
+                 message:'', _hp:''};
+    try{
+      var r=await fetch('https://leads.orbyhub.com.br/api/lead',{method:'POST',
+        headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      window.dataLayer=window.dataLayer||[];
+      window.dataLayer.push({event:'form_submit', form_name:'diagnostico_gratuito', form_regime:payload.regime});
+      if(window.orby&&window.orby.event) window.orby.event('form_submit',{form:'diagnostico'});
+      b.innerHTML='Enviado. Retornamos em breve.'; f.reset();
+    }catch(err){
+      b.disabled=false;
+      b.innerHTML='Não enviou. Chame no WhatsApp';
+      setTimeout(function(){b.innerHTML=txt;},4000);
+    }
+  });
+})();
+</script>
 
 <a class="flutua" onclick="dataLayer.push({event:'whatsapp_click',click_location:'floating_button'})" href={ZAP('Olá! Vim pelo site da Sofisco.')} aria-label="Falar no WhatsApp">
   <Icon n="zap" s={26} c="#fff" />
@@ -526,6 +561,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 .form input::placeholder{color:#a9b4c5}
 .dupla{display:grid;grid-template-columns:1fr 1fr;gap:15px}
 .largo{width:100%;justify-content:center;margin-top:4px}
+.mel{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .form small{color:var(--tinta-2);font-size:.9rem;text-align:center}
 @media(max-width:520px){.dupla{grid-template-columns:1fr}.form{padding:24px 20px}}
 

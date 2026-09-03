@@ -39,11 +39,11 @@ const { tipo } = Astro.props;
   <text x="40" y="176" fill="#7d8ea6" font-family="Manrope,sans-serif" font-size="9" font-weight="700" letter-spacing="1.6">FISCAL · CONTÁBIL · DP</text>
 </svg>)}
 
-{tipo === 'abertura' && (
-<svg class="cena" viewBox="0 0 360 190" role="img" aria-label="Do CNAE ao CNPJ ativo">
-  <defs><pattern id="gA" width="18" height="18" patternUnits="userSpaceOnUse">
+{tipo === 'inicio' && (
+<svg class="cena" viewBox="0 0 360 190" role="img" aria-label="Rotina contábil organizada desde o primeiro mês">
+  <defs><pattern id="gI" width="18" height="18" patternUnits="userSpaceOnUse">
     <path d="M18 0H0v18" fill="none" stroke="#1b3252" stroke-width=".8"/></pattern></defs>
-  <rect width="360" height="190" rx="12" fill="#0c1e39"/><rect width="360" height="190" rx="12" fill="url(#gA)"/>
+  <rect width="360" height="190" rx="12" fill="#0c1e39"/><rect width="360" height="190" rx="12" fill="url(#gI)"/>
   <rect x="40" y="112" width="46" height="30" rx="5" fill="#1c3557"/>
   <rect x="102" y="92" width="46" height="50" rx="5" fill="#1c3557"/>
   <rect x="164" y="72" width="46" height="70" rx="5" fill="#24406a"/>
@@ -52,12 +52,12 @@ const { tipo } = Astro.props;
   <path d="m244 52 16 8-16 8" stroke="#5f86e9" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   <circle cx="52" cy="128" r="4.5" fill="#5f86e9"/><circle cx="118" cy="106" r="4.5" fill="#5f86e9"/>
   <circle cx="182" cy="84" r="4.5" fill="#5f86e9"/>
-  <rect x="26" y="34" width="62" height="24" rx="12" fill="#16294a"/>
-  <text x="43" y="50" fill="#9db4d6" font-family="Manrope,sans-serif" font-size="10" font-weight="800" letter-spacing="1">CNAE</text>
-  <rect x="252" y="18" width="86" height="26" rx="13" fill="#5f86e9"/>
-  <path d="m266 31 4 4 7-7" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="283" y="35" fill="#fff" font-family="Manrope,sans-serif" font-size="10" font-weight="800" letter-spacing="1">CNPJ ATIVO</text>
-  <text x="40" y="170" fill="#6d86ab" font-family="Manrope,sans-serif" font-size="9" font-weight="700" letter-spacing="1.6">ENQUADRAMENTO DEFINIDO ANTES DE ABRIR</text>
+  <rect x="26" y="34" width="74" height="24" rx="12" fill="#16294a"/>
+  <text x="41" y="50" fill="#9db4d6" font-family="Manrope,sans-serif" font-size="10" font-weight="800" letter-spacing="1">1º MÊS</text>
+  <rect x="240" y="18" width="98" height="26" rx="13" fill="#5f86e9"/>
+  <path d="m254 31 4 4 7-7" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="271" y="35" fill="#fff" font-family="Manrope,sans-serif" font-size="10" font-weight="800" letter-spacing="1">EM ORDEM</text>
+  <text x="40" y="170" fill="#6d86ab" font-family="Manrope,sans-serif" font-size="9" font-weight="700" letter-spacing="1.6">ROTINA ORGANIZADA DESDE O INÍCIO</text>
 </svg>)}
 
 <style>
